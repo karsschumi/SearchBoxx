@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TestingModelStoreContainer" CdmEntityContainer="TestingEntities1">
+    <EntitySetMapping Name="sys_city">
+      <EntityTypeMapping TypeName="TestingModel.sys_city">
+        <MappingFragment StoreEntitySet="sys_city">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+          <ScalarProperty Name="stateId" ColumnName="stateId" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_country">
+      <EntityTypeMapping TypeName="TestingModel.sys_country">
+        <MappingFragment StoreEntitySet="sys_country">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="countryName" ColumnName="countryName" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_login">
+      <EntityTypeMapping TypeName="TestingModel.sys_login">
+        <MappingFragment StoreEntitySet="sys_login">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="loginName" ColumnName="loginName" />
+          <ScalarProperty Name="loginPassword" ColumnName="loginPassword" />
+          <ScalarProperty Name="roleId" ColumnName="roleId" />
+          <ScalarProperty Name="isInActive" ColumnName="isInActive" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_retail">
+      <EntityTypeMapping TypeName="TestingModel.sys_retail">
+        <MappingFragment StoreEntitySet="sys_retail">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="loginId" ColumnName="loginId" />
+          <ScalarProperty Name="retailName" ColumnName="retailName" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="mobileNo1" ColumnName="mobileNo1" />
+          <ScalarProperty Name="mobileNo2" ColumnName="mobileNo2" />
+          <ScalarProperty Name="landlineNo1" ColumnName="landlineNo1" />
+          <ScalarProperty Name="landlineNo2" ColumnName="landlineNo2" />
+          <ScalarProperty Name="cityId" ColumnName="cityId" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_retail2Images">
+      <EntityTypeMapping TypeName="TestingModel.sys_retail2Images">
+        <MappingFragment StoreEntitySet="sys_retail2Images">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="retailId" ColumnName="retailId" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="fileLocation" ColumnName="fileLocation" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_roles">
+      <EntityTypeMapping TypeName="TestingModel.sys_roles">
+        <MappingFragment StoreEntitySet="sys_roles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="roleName" ColumnName="roleName" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sys_state">
+      <EntityTypeMapping TypeName="TestingModel.sys_state">
+        <MappingFragment StoreEntitySet="sys_state">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="stateName" ColumnName="stateName" />
+          <ScalarProperty Name="countryId" ColumnName="countryId" />
+          <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

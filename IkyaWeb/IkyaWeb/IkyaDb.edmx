@@ -1,0 +1,569 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TestingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sys_city">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="stateId" Type="int" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sys_country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="countryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sys_login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loginName" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="loginPassword" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="roleId" Type="int" Nullable="false" />
+          <Property Name="isInActive" Type="bit" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sys_retail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="loginId" Type="int" />
+          <Property Name="retailName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="address1" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="address2" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="mobileNo1" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="mobileNo2" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="landlineNo1" Type="nvarchar" MaxLength="20" />
+          <Property Name="landlineNo2" Type="nvarchar" MaxLength="20" />
+          <Property Name="cityId" Type="int" />
+          <Property Name="website" Type="nvarchar" MaxLength="100" />
+          <Property Name="pincode" Type="numeric" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sys_retail2Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="retailId" Type="int" />
+          <Property Name="fileName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="fileLocation" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sys_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roleName" Type="varchar" MaxLength="1000" Nullable="false" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sys_state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stateName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="countryId" Type="int" />
+          <Property Name="createdBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="createdDate" Type="datetime" />
+          <Property Name="updatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="updatedDate" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_city_stateId">
+          <End Role="sys_state" Type="Self.sys_state" Multiplicity="0..1" />
+          <End Role="sys_city" Type="Self.sys_city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_state">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_city">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_login_roledId">
+          <End Role="sys_roles" Type="Self.sys_roles" Multiplicity="1" />
+          <End Role="sys_login" Type="Self.sys_login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_login">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_retail_cityId">
+          <End Role="sys_city" Type="Self.sys_city" Multiplicity="0..1" />
+          <End Role="sys_retail" Type="Self.sys_retail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_city">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_retail">
+              <PropertyRef Name="cityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_retail_loginId">
+          <End Role="sys_login" Type="Self.sys_login" Multiplicity="0..1" />
+          <End Role="sys_retail" Type="Self.sys_retail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_retail">
+              <PropertyRef Name="loginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_retail2Images_retailId">
+          <End Role="sys_retail" Type="Self.sys_retail" Multiplicity="0..1" />
+          <End Role="sys_retail2Images" Type="Self.sys_retail2Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_retail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_retail2Images">
+              <PropertyRef Name="retailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_state_countryId">
+          <End Role="sys_country" Type="Self.sys_country" Multiplicity="0..1" />
+          <End Role="sys_state" Type="Self.sys_state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_state">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestingModelStoreContainer">
+          <EntitySet Name="sys_city" EntityType="Self.sys_city" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_country" EntityType="Self.sys_country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_login" EntityType="Self.sys_login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_retail" EntityType="Self.sys_retail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_retail2Images" EntityType="Self.sys_retail2Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_roles" EntityType="Self.sys_roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sys_state" EntityType="Self.sys_state" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_city_stateId" Association="Self.fk_city_stateId">
+            <End Role="sys_state" EntitySet="sys_state" />
+            <End Role="sys_city" EntitySet="sys_city" />
+          </AssociationSet>
+          <AssociationSet Name="fk_login_roledId" Association="Self.fk_login_roledId">
+            <End Role="sys_roles" EntitySet="sys_roles" />
+            <End Role="sys_login" EntitySet="sys_login" />
+          </AssociationSet>
+          <AssociationSet Name="fk_retail_cityId" Association="Self.fk_retail_cityId">
+            <End Role="sys_city" EntitySet="sys_city" />
+            <End Role="sys_retail" EntitySet="sys_retail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_retail_loginId" Association="Self.fk_retail_loginId">
+            <End Role="sys_login" EntitySet="sys_login" />
+            <End Role="sys_retail" EntitySet="sys_retail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_retail2Images_retailId" Association="Self.fk_retail2Images_retailId">
+            <End Role="sys_retail" EntitySet="sys_retail" />
+            <End Role="sys_retail2Images" EntitySet="sys_retail2Images" />
+          </AssociationSet>
+          <AssociationSet Name="fk_state_countryId" Association="Self.fk_state_countryId">
+            <End Role="sys_country" EntitySet="sys_country" />
+            <End Role="sys_state" EntitySet="sys_state" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sys_city">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cityName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stateId" Type="Int32" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_state" Relationship="Self.fk_city_stateId" FromRole="sys_city" ToRole="sys_state" />
+          <NavigationProperty Name="sys_retail" Relationship="Self.fk_retail_cityId" FromRole="sys_city" ToRole="sys_retail" />
+        </EntityType>
+        <EntityType Name="sys_country">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="countryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_state" Relationship="Self.fk_state_countryId" FromRole="sys_country" ToRole="sys_state" />
+        </EntityType>
+        <EntityType Name="sys_login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loginName" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loginPassword" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="roleId" Type="Int32" Nullable="false" />
+          <Property Name="isInActive" Type="Boolean" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_roles" Relationship="Self.fk_login_roledId" FromRole="sys_login" ToRole="sys_roles" />
+          <NavigationProperty Name="sys_retail" Relationship="Self.fk_retail_loginId" FromRole="sys_login" ToRole="sys_retail" />
+        </EntityType>
+        <EntityType Name="sys_retail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="loginId" Type="Int32" />
+          <Property Name="retailName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address2" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mobileNo1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mobileNo2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="landlineNo1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="landlineNo2" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="cityId" Type="Int32" />
+          <Property Name="website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="Decimal" Precision="20" Scale="0" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_city" Relationship="Self.fk_retail_cityId" FromRole="sys_retail" ToRole="sys_city" />
+          <NavigationProperty Name="sys_login" Relationship="Self.fk_retail_loginId" FromRole="sys_retail" ToRole="sys_login" />
+          <NavigationProperty Name="sys_retail2Images" Relationship="Self.fk_retail2Images_retailId" FromRole="sys_retail" ToRole="sys_retail2Images" />
+        </EntityType>
+        <EntityType Name="sys_retail2Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="retailId" Type="Int32" />
+          <Property Name="fileName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fileLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_retail" Relationship="Self.fk_retail2Images_retailId" FromRole="sys_retail2Images" ToRole="sys_retail" />
+        </EntityType>
+        <EntityType Name="sys_roles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roleName" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_login" Relationship="Self.fk_login_roledId" FromRole="sys_roles" ToRole="sys_login" />
+        </EntityType>
+        <EntityType Name="sys_state">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stateName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="countryId" Type="Int32" />
+          <Property Name="createdBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+          <Property Name="updatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="updatedDate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="sys_city" Relationship="Self.fk_city_stateId" FromRole="sys_state" ToRole="sys_city" />
+          <NavigationProperty Name="sys_country" Relationship="Self.fk_state_countryId" FromRole="sys_state" ToRole="sys_country" />
+        </EntityType>
+        <Association Name="fk_city_stateId">
+          <End Role="sys_state" Type="Self.sys_state" Multiplicity="0..1" />
+          <End Role="sys_city" Type="Self.sys_city" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_state">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_city">
+              <PropertyRef Name="stateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_retail_cityId">
+          <End Role="sys_city" Type="Self.sys_city" Multiplicity="0..1" />
+          <End Role="sys_retail" Type="Self.sys_retail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_city">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_retail">
+              <PropertyRef Name="cityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_state_countryId">
+          <End Role="sys_country" Type="Self.sys_country" Multiplicity="0..1" />
+          <End Role="sys_state" Type="Self.sys_state" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_country">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_state">
+              <PropertyRef Name="countryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_login_roledId">
+          <End Role="sys_roles" Type="Self.sys_roles" Multiplicity="1" />
+          <End Role="sys_login" Type="Self.sys_login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_roles">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_login">
+              <PropertyRef Name="roleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_retail_loginId">
+          <End Role="sys_login" Type="Self.sys_login" Multiplicity="0..1" />
+          <End Role="sys_retail" Type="Self.sys_retail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_login">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_retail">
+              <PropertyRef Name="loginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_retail2Images_retailId">
+          <End Role="sys_retail" Type="Self.sys_retail" Multiplicity="0..1" />
+          <End Role="sys_retail2Images" Type="Self.sys_retail2Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="sys_retail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="sys_retail2Images">
+              <PropertyRef Name="retailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestingEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sys_city" EntityType="Self.sys_city" />
+          <EntitySet Name="sys_country" EntityType="Self.sys_country" />
+          <EntitySet Name="sys_login" EntityType="Self.sys_login" />
+          <EntitySet Name="sys_retail" EntityType="Self.sys_retail" />
+          <EntitySet Name="sys_retail2Images" EntityType="Self.sys_retail2Images" />
+          <EntitySet Name="sys_roles" EntityType="Self.sys_roles" />
+          <EntitySet Name="sys_state" EntityType="Self.sys_state" />
+          <AssociationSet Name="fk_city_stateId" Association="Self.fk_city_stateId">
+            <End Role="sys_state" EntitySet="sys_state" />
+            <End Role="sys_city" EntitySet="sys_city" />
+          </AssociationSet>
+          <AssociationSet Name="fk_retail_cityId" Association="Self.fk_retail_cityId">
+            <End Role="sys_city" EntitySet="sys_city" />
+            <End Role="sys_retail" EntitySet="sys_retail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_state_countryId" Association="Self.fk_state_countryId">
+            <End Role="sys_country" EntitySet="sys_country" />
+            <End Role="sys_state" EntitySet="sys_state" />
+          </AssociationSet>
+          <AssociationSet Name="fk_login_roledId" Association="Self.fk_login_roledId">
+            <End Role="sys_roles" EntitySet="sys_roles" />
+            <End Role="sys_login" EntitySet="sys_login" />
+          </AssociationSet>
+          <AssociationSet Name="fk_retail_loginId" Association="Self.fk_retail_loginId">
+            <End Role="sys_login" EntitySet="sys_login" />
+            <End Role="sys_retail" EntitySet="sys_retail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_retail2Images_retailId" Association="Self.fk_retail2Images_retailId">
+            <End Role="sys_retail" EntitySet="sys_retail" />
+            <End Role="sys_retail2Images" EntitySet="sys_retail2Images" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestingModelStoreContainer" CdmEntityContainer="TestingEntities1">
+          <EntitySetMapping Name="sys_city">
+            <EntityTypeMapping TypeName="TestingModel.sys_city">
+              <MappingFragment StoreEntitySet="sys_city">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+                <ScalarProperty Name="stateId" ColumnName="stateId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_country">
+            <EntityTypeMapping TypeName="TestingModel.sys_country">
+              <MappingFragment StoreEntitySet="sys_country">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="countryName" ColumnName="countryName" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_login">
+            <EntityTypeMapping TypeName="TestingModel.sys_login">
+              <MappingFragment StoreEntitySet="sys_login">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="loginName" ColumnName="loginName" />
+                <ScalarProperty Name="loginPassword" ColumnName="loginPassword" />
+                <ScalarProperty Name="roleId" ColumnName="roleId" />
+                <ScalarProperty Name="isInActive" ColumnName="isInActive" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_retail">
+            <EntityTypeMapping TypeName="TestingModel.sys_retail">
+              <MappingFragment StoreEntitySet="sys_retail">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="loginId" ColumnName="loginId" />
+                <ScalarProperty Name="retailName" ColumnName="retailName" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="mobileNo1" ColumnName="mobileNo1" />
+                <ScalarProperty Name="mobileNo2" ColumnName="mobileNo2" />
+                <ScalarProperty Name="landlineNo1" ColumnName="landlineNo1" />
+                <ScalarProperty Name="landlineNo2" ColumnName="landlineNo2" />
+                <ScalarProperty Name="cityId" ColumnName="cityId" />
+                <ScalarProperty Name="website" ColumnName="website" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_retail2Images">
+            <EntityTypeMapping TypeName="TestingModel.sys_retail2Images">
+              <MappingFragment StoreEntitySet="sys_retail2Images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="retailId" ColumnName="retailId" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="fileLocation" ColumnName="fileLocation" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_roles">
+            <EntityTypeMapping TypeName="TestingModel.sys_roles">
+              <MappingFragment StoreEntitySet="sys_roles">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="roleName" ColumnName="roleName" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sys_state">
+            <EntityTypeMapping TypeName="TestingModel.sys_state">
+              <MappingFragment StoreEntitySet="sys_state">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="stateName" ColumnName="stateName" />
+                <ScalarProperty Name="countryId" ColumnName="countryId" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedBy" ColumnName="updatedBy" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram DiagramId="6fc174590ff745e6bf20487b3c81c5b2" Name="Diagram1">
+        <EntityTypeShape EntityType="TestingModel.sys_city" Width="1.5" PointX="5.25" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.sys_country" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.sys_login" Width="1.5" PointX="5.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.sys_retail" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.sys_retail2Images" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.sys_roles" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestingModel.sys_state" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="TestingModel.fk_city_stateId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestingModel.fk_retail_cityId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestingModel.fk_state_countryId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestingModel.fk_login_roledId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestingModel.fk_retail_loginId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestingModel.fk_retail2Images_retailId" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
