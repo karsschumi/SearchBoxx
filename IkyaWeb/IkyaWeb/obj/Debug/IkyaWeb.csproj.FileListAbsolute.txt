@@ -56,7 +56,6 @@ C:\Users\Chethany\Documents\Visual Studio 2015\Projects\IkyaWeb\IkyaWeb\bin\Syst
 C:\Users\Chethany\Documents\Visual Studio 2015\Projects\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.csprojResolveAssemblyReference.cache
 C:\Users\Chethany\Documents\Visual Studio 2015\Projects\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.dll
 C:\Users\Chethany\Documents\Visual Studio 2015\Projects\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.pdb
-D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.csprojResolveAssemblyReference.cache
 D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.dll
 D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.pdb
 D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\ApplicationInsights.config
@@ -114,3 +113,17 @@ D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\
 D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\System.Net.Http.Formatting.xml
 D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\System.Web.Http.xml
 D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\System.Web.Http.WebHost.xml
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.AspNet.Identity.Core.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.Security.Cookies.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.Security.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Owin.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.AspNet.Identity.Core.xml
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.xml
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.Security.xml
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.Owin.Security.Cookies.xml
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\obj\Debug\IkyaWeb.csprojResolveAssemblyReference.cache
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\back1117\drive-download-20170401T093247Z-001\Application\IkyaWeb\IkyaWeb\bin\Microsoft.AspNet.Identity.EntityFramework.xml
